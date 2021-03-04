@@ -74,3 +74,6 @@ buildNumber.properties
 ### IntelliJ ###
 .idea/
 *.iml
+
+ui.frontend/node_modules/
+ui.frontend/node/node_modules/
