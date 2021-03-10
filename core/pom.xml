@@ -44,6 +44,7 @@
                         <configuration>
                             <bnd><![CDATA[
 Import-Package: javax.annotation;version=0.0.0,*
+Sling-Model-Packages: com.globant.core.models,com.globant.core.exporters
                                 ]]></bnd>
                         </configuration>
                     </execution>

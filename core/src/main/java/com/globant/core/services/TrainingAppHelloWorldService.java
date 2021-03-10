@@ -32,6 +32,9 @@ public class TrainingAppHelloWorldService implements HelloWorldService {
         
         @AttributeDefinition(name = "Dummy number field", defaultValue = "1", description = "Random number...", type = AttributeType.INTEGER)
         int number();
+        
+        @AttributeDefinition(name = "String Array Value", defaultValue = {""}, description = "Random number...")
+        String[] dummyStringArray();
 
     }
     

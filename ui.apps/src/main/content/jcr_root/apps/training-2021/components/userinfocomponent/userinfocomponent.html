@@ -13,9 +13,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="cmp-helloworld" data-cmp-is="helloworld" data-sly-use.myContent="com.globant.core.models.MyTrainingComponentUse">
-    <h2 class="cmp-helloworld__title">Say Hi Component</h2>
-    <div class="cmp-helloworld__item" data-sly-test="${myContent.helloMessage}">
-        <p>${myContent.helloMessage}</p>
+<div class="cmp-helloworld" data-cmp-is="helloworld" >
+    <h2 class="cmp-helloworld__title">User: ${properties.name}</h2>
+    <img width="300" alt="" src="${properties.avatar}">
+    <div class="cmp-helloworld__item">
+        <p>Surname: ${properties.surname}</p>
+        <p>Email: ${properties.email}</p>
+        <p>Cellphone: ${properties.cellphone}</p>
     </div>
 </div>

@@ -3,7 +3,7 @@ package com.globant.core.models;
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.globant.core.services.HelloWorldService;
 
-public class MyTrainingComponent extends WCMUsePojo {
+public class MyTrainingComponentUse extends WCMUsePojo {
     
     private String userName;
     
