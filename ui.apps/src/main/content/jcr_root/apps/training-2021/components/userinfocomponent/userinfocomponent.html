@@ -14,9 +14,10 @@
     limitations under the License.
 */-->
 <div class="cmp-helloworld" data-cmp-is="helloworld" >
-    <h2 class="cmp-helloworld__title">User: ${properties.name}</h2>
+    <h2 class="cmp-helloworld__title">${currentStyle.componentTitle}</h2>
     <img width="300" alt="" src="${properties.avatar}">
     <div class="cmp-helloworld__item">
+        <p>Name: ${properties.name}</p>
         <p>Surname: ${properties.surname}</p>
         <p>Email: ${properties.email}</p>
         <p>Cellphone: ${properties.cellphone}</p>

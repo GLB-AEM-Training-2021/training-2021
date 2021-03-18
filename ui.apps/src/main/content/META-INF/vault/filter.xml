@@ -2,5 +2,6 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/training-2021/clientlibs"/>
     <filter root="/apps/training-2021/components"/>
+    <filter root="/apps/training-2021/templates"/>
     <filter root="/apps/training-2021/i18n"/>
 </workspaceFilter>

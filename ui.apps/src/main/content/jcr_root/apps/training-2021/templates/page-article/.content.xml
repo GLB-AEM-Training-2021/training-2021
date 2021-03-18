@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:description="The article template for the Training application."
+    jcr:primaryType="cq:Template"
+    jcr:title="Training Article Page"
+    allowedPaths="[/content/training-2021/(.*)]"
+    components="[Training 2021 WKND Sites - Content]"
+    ranking="{Long}100">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="training-2021/components/structure/pages/articlepage"
+        type="Article">
+        
+        <mytrainingcomponent
+            jcr:lastModified="{Date}2016-12-07T15:45:18.584Z"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="training-2021/components/mytrainingcomponent"
+            userName="Fill user Name" />
+            
+        <userinfocomponent
+            jcr:lastModified="{Date}2016-12-07T15:45:18.584Z"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="training-2021/components/userinfocomponent"
+            name="Fill user name"
+            surname="Fill user surname"
+            email="Fill user email" />
+            
+    </jcr:content>
+</jcr:root>
