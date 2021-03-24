@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -20,9 +22,9 @@ import com.google.gson.JsonObject;
 @Component(
 service = { Servlet.class },
 property = { 
-    "sling.servlet.resourceTypes=/apps/training-2021/components/userinfocomponent",
+    "sling.servlet.resourceTypes=[/apps/training-2021/components/userinfocomponent]",
     "sling.servlet.methods=GET",
-    "sling.servlet.extensions=json",
+    "sling.servlet.extensions=xml",
     "sling.servlet.selectors=userinfo.servlet",
   }
 )
@@ -46,7 +48,9 @@ public class UserServlet extends SlingSafeMethodsServlet {
         String avatar = "";
         if (request.getRequestPathInfo().getSelectorString().contains("jcr")) {
             try {
-                Node componentNode = request.getResourceResolver().adaptTo(Session.class).getNode(request.getResource().getPath());
+                
+                Session jcrSession = request.getResourceResolver().adaptTo(Session.class);
+                Node componentNode = jcrSession.getNode(request.getResource().getPath());
                 
                 name = componentNode.hasProperty(NAME) ? componentNode.getProperty(NAME).getString() : "";
                 surname = componentNode.hasProperty(SURNAME) ? componentNode.getProperty(SURNAME).getString() : "";
@@ -58,6 +62,9 @@ public class UserServlet extends SlingSafeMethodsServlet {
             }
         } else {
             ValueMap properties = request.getResource().getValueMap();
+            
+            ResourceResolver resourceResolver = request.getResourceResolver();
+            Resource myComponent = resourceResolver.getResource("/content/training-2021/us/en/components-and-templates-class/jcr:content/root/container/container/userinfocomponent");
             
             name = (String)properties.getOrDefault(NAME, "");
             surname = (String)properties.getOrDefault(SURNAME, "");

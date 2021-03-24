@@ -15,6 +15,7 @@
  */
 package com.globant.core.exporters;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
@@ -23,6 +24,7 @@ import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.ExporterOption;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
@@ -39,10 +41,13 @@ import com.globant.core.services.HelloWorldService;
     }
 )
 @Model(
-    adaptables = Resource.class, 
+    adaptables = {Resource.class, SlingHttpServletRequest.class},
     resourceType = "training-2021/components/userinfocomponent",
     defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class UserExporter {
+    
+    @Self
+    SlingHttpServletRequest selfRequest;
 
     @ValueMapValue(name="name")
     @Default(values="<name>")
@@ -77,6 +82,7 @@ public class UserExporter {
     private HelloWorldService helloWorldService;
 
     public String getName() {
+        selfRequest.getParameter("");
         return name;
     }
 

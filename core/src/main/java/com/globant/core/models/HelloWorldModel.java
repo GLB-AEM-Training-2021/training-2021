@@ -25,6 +25,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
@@ -38,6 +39,9 @@ import java.util.Optional;
 
 @Model(adaptables = Resource.class)
 public class HelloWorldModel {
+    
+    @Self
+    Resource self;
 
     @ValueMapValue(name=PROPERTY_RESOURCE_TYPE, injectionStrategy=InjectionStrategy.OPTIONAL)
     @Default(values="No resourceType")
@@ -66,6 +70,9 @@ public class HelloWorldModel {
             + "Resource type is: " + resourceType + "\n"
             + "Current page is:  " + currentPagePath + "\n"
             + "This is instance: " + settings.getSlingId() + "\n";
+        
+        
+        // this.self == self.adaptTo(HelloWorldModel.class)
     }
 
     public String getMessage() {
