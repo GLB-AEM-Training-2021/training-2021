@@ -21,6 +21,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
@@ -49,8 +50,10 @@ public class HelloWorldModel {
 
     @OSGiService
     private SlingSettingsService settings;
+    
     @SlingObject
     private Resource currentResource;
+    
     @SlingObject
     private ResourceResolver resourceResolver;
     
@@ -77,6 +80,11 @@ public class HelloWorldModel {
 
     public String getMessage() {
         return message;
+    }
+    
+    public String getHelloWorld() {
+        
+        return helloWorldService.getCustomHelloWorld((String)self.adaptTo(ValueMap.class).getOrDefault("name", "<hello_name>"));
     }
 
 }

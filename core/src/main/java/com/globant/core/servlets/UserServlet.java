@@ -24,8 +24,8 @@ service = { Servlet.class },
 property = { 
     "sling.servlet.resourceTypes=[/apps/training-2021/components/userinfocomponent]",
     "sling.servlet.methods=GET",
-    "sling.servlet.extensions=xml",
-    "sling.servlet.selectors=userinfo.servlet",
+    "sling.servlet.extensions=json",
+    "sling.servlet.selectors=userinfo.servlet.v1",
   }
 )
 public class UserServlet extends SlingSafeMethodsServlet {

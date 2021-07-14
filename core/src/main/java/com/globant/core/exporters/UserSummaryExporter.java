@@ -34,7 +34,7 @@ import com.globant.core.services.HelloWorldService;
 @Exporter(
     name = "jackson", 
     extensions = "json", 
-    selector = "userinfo.userexporter",
+    selector = "userinfo.usersummaryexporter",
     options = {
         @ExporterOption(name = "MapperFeature.SORT_PROPERTIES_ALPHABETICALLY", value = "true"),
         @ExporterOption(name = "SerializationFeature.WRITE_DATES_AS_TIMESTAMPS", value="false")
@@ -44,7 +44,7 @@ import com.globant.core.services.HelloWorldService;
     adaptables = {Resource.class, SlingHttpServletRequest.class},
     resourceType = "training-2021/components/userinfocomponent",
     defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class UserExporter {
+public class UserSummaryExporter {
     
     @Self
     SlingHttpServletRequest selfRequest;
@@ -53,18 +53,6 @@ public class UserExporter {
     @Default(values="<name>")
     protected String name;
     
-    @ValueMapValue(name="surname")
-    @Default(values="<surname>")
-    protected String surname;
-    
-    @ValueMapValue(name="email")
-    @Default(values="<email>")
-    protected String email;
-    
-    @ValueMapValue(name="cellphone")
-    @Default(values="<cellphone>")
-    protected String cellphone;
-
     @ValueMapValue(name="avatar")
     @Default(values="<avatar>")
     protected String avatar;
@@ -83,18 +71,6 @@ public class UserExporter {
 
     public String getName() {
         return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCellphone() {
-        return cellphone;
     }
 
     public String getAvatar() {
