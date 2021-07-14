@@ -45,6 +45,7 @@ public class UserModelServlet extends SlingSafeMethodsServlet {
         obj.addProperty(EMAIL, userModel.getEmail());
         obj.addProperty(CELLPHONE, userModel.getCellphone());
         obj.addProperty(AVATAR, userModel.getAvatar());
+        obj.addProperty("renderer", "servlet-v2-model");
         
         response.setContentType("application/json");
         response.getWriter().write(obj.toString());

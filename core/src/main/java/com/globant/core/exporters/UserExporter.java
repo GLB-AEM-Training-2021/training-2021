@@ -82,8 +82,11 @@ public class UserExporter {
     private HelloWorldService helloWorldService;
 
     public String getName() {
-        selfRequest.getParameter("");
         return name;
+    }
+    
+    public String getRenderer() {
+        return "servlet-v2-exporter";
     }
 
     public String getSurname() {

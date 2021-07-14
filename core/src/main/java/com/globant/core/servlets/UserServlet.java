@@ -22,9 +22,9 @@ import com.google.gson.JsonObject;
 @Component(
 service = { Servlet.class },
 property = { 
-    "sling.servlet.resourceTypes=[/apps/training-2021/components/userinfocomponent]",
+    "sling.servlet.resourceTypes=/apps/training-2021/components/userinfocomponent",
     "sling.servlet.methods=GET",
-    "sling.servlet.extensions=xml",
+    "sling.servlet.extensions=json",
     "sling.servlet.selectors=userinfo.servlet",
   }
 )
@@ -79,6 +79,7 @@ public class UserServlet extends SlingSafeMethodsServlet {
         obj.addProperty(EMAIL, email);
         obj.addProperty(CELLPHONE, cellphone);
         obj.addProperty(AVATAR, avatar);
+        obj.addProperty("renderer", "servlet-v1");
         
         response.setContentType("application/json");
         response.getWriter().write(obj.toString());
