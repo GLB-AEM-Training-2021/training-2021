@@ -58,6 +58,7 @@ public class HelloWorldModel {
     private HelloWorldService helloWorldService;
 
     private String message;
+    private String helloWorld;
 
     @PostConstruct
     protected void init() {
@@ -71,12 +72,16 @@ public class HelloWorldModel {
             + "Current page is:  " + currentPagePath + "\n"
             + "This is instance: " + settings.getSlingId() + "\n";
         
-        
-        // this.self == self.adaptTo(HelloWorldModel.class)
+        String configuredName = self.getValueMap().get("text", "<name>");
+        helloWorld = helloWorldService.getCustomHelloWorld(configuredName);
     }
 
     public String getMessage() {
         return message;
+    }
+    
+    public String getHelloWorld() {
+        return helloWorld;
     }
 
 }
