@@ -10,30 +10,20 @@ import org.apache.sling.api.resource.observation.ResourceChange;
 import org.apache.sling.api.resource.observation.ResourceChangeListener;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.event.EventConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Configuration Page Changed listener. 
- * In charge of notifying the config pages update to any interested component
- * 
- * @author <a href=
- *         "mailto:mauricio.rodriguez@globant.com">mauricio.rodriguez</a>
- */
-/**
- * The type Page activation listener.
- */
 @Component(
+    name = "[AEM Training] User Information Content Listener",
     service = ResourceChangeListener.class,
     property = {
-        ResourceChangeListener.PATHS + "=" + SlingObservationProductsListener.LISTENER_ROOT_PATH,
+        ResourceChangeListener.PATHS + "=" + UserInformationContentListener.LISTENER_ROOT_PATH,
         ResourceChangeListener.CHANGES + "=" + "ADDED",
         ResourceChangeListener.CHANGES + "=" + "CHANGED",
-        ResourceChangeListener.CHANGES + "=" + "REMOVED "       
+        ResourceChangeListener.CHANGES + "=" + "REMOVED"
     }
 )
-public class SlingObservationProductsListener implements ResourceChangeListener {
+public class UserInformationContentListener implements ResourceChangeListener {
 
     public static final String LISTENER_ROOT_PATH = "/content/training-2021";
 
@@ -42,24 +32,19 @@ public class SlingObservationProductsListener implements ResourceChangeListener 
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
 
-
     /**
      * Listener callback for the configPage properties change.
      */
     public void onChange(List<ResourceChange> changes) {
         ResourceResolver resolver = null;
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put(ResourceResolverFactory.SUBSERVICE, "training-2021-observation");
+        param.put(ResourceResolverFactory.SUBSERVICE, "training-observation");
         try {
             resolver = resourceResolverFactory.getServiceResourceResolver(param);
             //resolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
             for (ResourceChange change : changes) {
                 LOGGER.debug("{} -> {}.", change.getType(), change.getPath());
                 
-                // remove all /*
-                
-                // send an email
-                // modify a property
             }
         } catch (Exception e) {
             LOGGER.error("Error handling config page change", e);

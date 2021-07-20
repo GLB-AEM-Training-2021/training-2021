@@ -25,7 +25,7 @@ import javax.jcr.observation.EventListener;
  *         "mailto:mauricio.rodriguez@globant.com">mauricio.rodriguez</a>
  */
 @Component(immediate = true,service = EventListener.class)
-public class JcrObservationProductListener implements EventListener {
+public class UserInformationPropertiesListener implements EventListener {
 
     public static final String LISTENER_ROOT_PATH = "/content/training-2021";
 
@@ -41,7 +41,7 @@ public class JcrObservationProductListener implements EventListener {
     public void activate(ComponentContext context) throws Exception {
         log.info("Activating JcrObservationProductListener...");
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put(ResourceResolverFactory.SUBSERVICE, "training-2021-observation");
+        param.put(ResourceResolverFactory.SUBSERVICE, "training-observation");
         try {
             resolver = resourceResolverFactory.getServiceResourceResolver(param);
             //resolver = resourceResolverFactory.getAdministrativeResourceResolver(null);

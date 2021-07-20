@@ -33,9 +33,32 @@ Access log: <aem_install_folder>/crx-quickstart/logs/access.log
 
 [http://localhost:4502/system/console/bundles](http://localhost:4502/system/console/bundles)
 
-### Check that the sling models and exporters was installed:
+### Check that the sling models and exporters were installed:
 
 [http://localhost:4502/system/console/adapters](http://localhost:4502/system/console/adapters)
+
+### Sling-Packages declarations in pom.xml
+
+```xml
+            <plugin>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bnd-process</id>
+                        <goals>
+                            <goal>bnd-process</goal>
+                        </goals>
+                        <configuration>
+                            <bnd><![CDATA[
+Import-Package: javax.annotation;version=0.0.0,*
+Sling-Model-Packages: com.globant.core.models,com.globant.core.exporters
+                                ]]></bnd>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+```
 
 ### Other links...
     http://localhost:4502/system/console/servletresolver?url=%2Fcontent%2Ftraining-2021%2Fus%2Fen%2Fcomponents-and-templates-class%2Fjcr%3Acontent%2Froot%2Fcontainer%2Fcontainer%2Fuserinfocomponent.userinfo.servlet.json&method=GET
@@ -172,3 +195,40 @@ Important: OSGI Configuration files MUST have the same name as the full qualifie
 ```
 java -Xmx512m -jar cq-quickstart-6.4.jar -Dsling.run.modes=publish,prod,us
 ```
+"
+
+### AEM Content Querying
+
+### QueryBuilder Example
+
+```
+path=/content/training-2021
+path.exact=false
+1_property=sling:resourceType
+1_property.value=training-2021/components/userinfocomponent
+2_property=surname
+2_property.value=Smith
+p.limit=10
+```
+
+### SQL2 Example
+
+```
+SELECT * FROM [nt:unstructured] AS node
+WHERE ISDESCENDANTNODE(node, "/content/training-2021")
+AND CONTAINS([surname], "Smith")
+```
+
+### QOM Example
+
+```
+QueryObjectModelFactory qf = qm.getQOMFactory();
+Source source = qf.selector(“nt:folder”, “ntfolder”);
+QueryObjectModel query = qf.createQuery(source, null, null,null);
+```
+
+### Usefull Links
+* [http://www.aemcq5tutorials.com/tutorials/adobe-aem-cq5-tutorials/aem-query-builder/](http://www.aemcq5tutorials.com/tutorials/adobe-aem-cq5-tutorials/aem-query-builder/)
+* [https://gist.github.com/floriankraft/8b3720464318cd5cd9e2](https://gist.github.com/floriankraft/8b3720464318cd5cd9e2)
+
+
