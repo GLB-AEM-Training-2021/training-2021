@@ -4,7 +4,7 @@
     jcr:primaryType="cq:Template"
     jcr:title="Training Article Page"
     allowedPaths="[/content/training-2021/(.*)]"
-    components="[Training 2021 WKND Sites - Content]"
+    components="[Training 2021 WKND Sites - Content, Training 2021 WKND Sites - Content]"
     ranking="{Long}100">
     <jcr:content
         jcr:primaryType="cq:PageContent"
@@ -19,13 +19,18 @@
             userName="Fill user Name" />
             
         <userinfocomponent
-            jcr:lastModified="{Date}2016-12-07T15:45:18.584Z"
-            jcr:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="training-2021/components/userinfocomponent"
             name="Fill user name"
             surname="Fill user surname"
             email="Fill user email" />
+            
+        <userinfocomponent_2
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="training-2021/components/userinfocomponent"
+            name="userinfocomponent_2 - Fill user name"
+            surname="userinfocomponent_2 - Fill user surname"
+            email="userinfocomponent_2 -Fill user email" />
             
     </jcr:content>
 </jcr:root>

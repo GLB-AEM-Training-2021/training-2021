@@ -231,4 +231,38 @@ QueryObjectModel query = qf.createQuery(source, null, null,null);
 * [http://www.aemcq5tutorials.com/tutorials/adobe-aem-cq5-tutorials/aem-query-builder/](http://www.aemcq5tutorials.com/tutorials/adobe-aem-cq5-tutorials/aem-query-builder/)
 * [https://gist.github.com/floriankraft/8b3720464318cd5cd9e2](https://gist.github.com/floriankraft/8b3720464318cd5cd9e2)
 
+## Templates
 
+## Static Templates
+    
+    Important!
+        if components are not shown in the ui:
+            1. 
+        * The AEM provided ootb page is located at: 
+            /libs/wcm/foundation/components/page
+    
+    Template definition: /apps/<your_app>/templates
+        * Metadata
+        * default content: if we have components (structure) in the ui, we can define the values (content) to be displayed by default.
+        
+    Template implementation: /apps/<your_app>/components/structure
+        * Structure definition
+        * html files that implement the template
+        * We can find page inheritance (sling:resourceSuperType)
+        
+
+### Dynamic Templates
+
+    http://www.sgaemsolutions.com/2017/09/dynamic-editable-templates-in-aem-63.html
+
+## Client Libs
+    
+    http://localhost:4502/libs/granite/ui/content/dumplibs.html
+
+```
+    <head data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}">
+        <!--for css+js --><meta data-sly-call="${clientLib.all @ categories='your.clientlib'}" data-sly-unwrap></meta>
+        <!-- only js --><meta data-sly-call="${clientLib.js @ categories='your.clientlib'}" data-sly-unwrap></meta>
+        <!-- only css --><meta data-sly-call="${clientLib.css @ categories='your.clientlib'}" data-sly-unwrap></meta>
+    </head>
+```
